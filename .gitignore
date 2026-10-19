@@ -1,0 +1,33 @@
+# ---- 受版权保护的内容，不入库（构建时由管线自行获取 / 生成） ----
+# tools/official/ = allin.com 官方 Transcript
+tools/official/
+# site/transcripts/ = YouTube 字幕与本地 ASR 文稿
+site/transcripts/
+
+# ---- 构建产物（build.py 全量重建）；zh-index.json 与 site/zh/ 精读全文入库 ----
+site/ep/
+site/data/*
+!site/data/zh-index.json
+site/disclaimer/
+site/archive/
+site/sitemap.xml
+site/llms.txt
+site/feed.xml
+site/zh/*.pre-official
+
+# ---- 运行时状态 ----
+tools/audio_sizes.json
+zh_model_stats.json
+gen_zh_failures.json
+
+# ---- 系统杂项 ----
+.DS_Store
+__pycache__/
+*.pyc
+.claude/
+
+# ---- 构建产物：分享卡片 / 特殊页 / 字体与缩略图缓存 ----
+site/og/
+site/404.html
+site/offline.html
+tools/.cache/
