@@ -15,6 +15,7 @@ import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -264,11 +265,38 @@ def min_chars(size):
     return 1200
 
 
+_429_until = {}   # model -> 冷却截止 epoch，跨线程共享：限流期间不再空打上游
+_429_lock = threading.Lock()
+
+
+def _cooldown_from_429(resp):
+    """429 冷却时长：优先 Retry-After，其次正文里的重置时刻（按 UTC+8 解析），兜底 120s，上限 1h。"""
+    ra = resp.headers.get('Retry-After')
+    if ra:
+        try:
+            return min(3600, max(5, int(float(ra))))
+        except ValueError:
+            pass
+    m = re.search(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}', resp.text or '')
+    if m:
+        try:
+            reset = datetime.strptime(m.group(0), '%Y-%m-%d %H:%M:%S').replace(
+                tzinfo=timezone(timedelta(hours=8)))
+            return min(3600, max(5, int(reset.timestamp() - time.time())))
+        except Exception:
+            pass
+    return 120
+
+
 def chat(messages, max_tokens=MAX_TOKENS, timeout=600, model=None):
-    """动态路由调用：从 model（缺省榜首）起，遇 4xx 或纯思考响应按实时质量排序换下一家。"""
+    """动态路由调用：从 model（缺省榜首）起，遇 4xx/限流或纯思考响应按实时质量排序换下一家。"""
     global _last_ok_model
     order = ranked_models()
     start = order.index(model) if model in order else 0
+    live = [m for m in order if _429_until.get(m, 0) <= time.time()]
+    if live and len(live) < len(order):
+        order = live
+        start = order.index(model) if model in order else 0
     last = None
     for hop in range(len(order)):
         cur = order[(start + hop) % len(order)]
@@ -285,7 +313,15 @@ def chat(messages, max_tokens=MAX_TOKENS, timeout=600, model=None):
                     last = f'HTTP {r.status_code} on {cur}: {r.text[:150]}'
                     print(f'model down: {cur} ({r.status_code}), next in ladder', flush=True)
                     break
-                if r.status_code == 429 or r.status_code >= 500:
+                if r.status_code == 429:
+                    # 配额/限流是分钟级以上事件，原地退避只会白等：记冷却，立刻换下一家
+                    cd = _cooldown_from_429(r)
+                    with _429_lock:
+                        _429_until[cur] = time.time() + cd
+                    last = f'HTTP 429 on {cur}: {r.text[:150]}'
+                    print(f'model limited: {cur} (429, cooldown {cd:.0f}s), next in ladder', flush=True)
+                    break
+                if r.status_code >= 500:
                     last = f'HTTP {r.status_code}: {r.text[:200]}'
                     time.sleep(min(300, 8 * 2 ** attempt))
                     continue

@@ -778,7 +778,7 @@ def build_disclaimer():
 </html>
 """
     out = SITE / 'disclaimer' / 'index.html'
-    out.parent.mkdir(exist_ok=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html)
     print('disclaimer page: ok')
 
@@ -1055,7 +1055,7 @@ def build_archive(eps):
 </html>
 """
     out = SITE / 'archive' / 'index.html'
-    out.parent.mkdir(exist_ok=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html)
     print(f'archive page: {len(eps)} eps')
 
