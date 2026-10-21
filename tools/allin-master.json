@@ -1,5 +1,66 @@
 [
  {
+  "num": null,
+  "title": "Dylan Field: Is AI Replacing Designers?, Design is the New Code & Democratizing Creativity",
+  "rssTitle": "Dylan Field: Is AI Replacing Designers?, Design is the New Code & Democratizing Creativity",
+  "date": "2026-10-19",
+  "slug": "dylan-field-ai-replacing-designers-design-new",
+  "type": "interview",
+  "ytId": "2Zj6uMv3kTA",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/AUDIO_200_Dylan_Field_INT_1.mp3",
+  "duration": 2433,
+  "desc": "Is design the new code? Figma CEO Dylan Field joins Jason to explain why taste, brand and point of view matter more as AI makes code easier to produce. They discuss Figma’s origin story, Adobe’s blocked $20 billion deal, the “SaaS apocalypse,” and why AI lowers the floor for creation while human curiosity, agency and boldness still raise the ceiling.",
+  "chapters": [
+   [
+    0,
+    "Dylan Field joins the show: Figma's origin story and mission"
+   ],
+   [
+    196,
+    "Adobe's $20B deal blocked: inside the antitrust fight"
+   ],
+   [
+    749,
+    "Is AI killing SaaS? Frontier Companies vs. Figma, the \"SaaS apocalypse\""
+   ],
+   [
+    1132,
+    "Creativity in the AI era: why taste and boldness win"
+   ],
+   [
+    2162,
+    "Human agency, AI's promise, and what comes next"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": null,
+    "dur": 1,
+    "host": false
+   },
+   {
+    "name": "Jason Calacanis",
+    "dur": 565,
+    "host": true
+   },
+   {
+    "name": "Dylan Field",
+    "dur": 1798,
+    "host": false
+   }
+  ],
+  "guests": [
+   null,
+   "Dylan Field"
+  ],
+  "pai": "fjAMYRu1aRd",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/fjAMYRu1aRd/transcript-189abcb0.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/dylan-field-is-ai-replacing-designers-design-is-the-new-code-democratizing-creativity",
+  "guid": "ec72ab3a-2b5c-4f7b-9194-875ce45930d1",
+  "apple": "1502871393?i=1000797157948",
+  "spotify": "6wJWUVASomYZOr1h1N14W9"
+ },
+ {
   "num": 293,
   "title": "CoreWeave Crash, AI Trade Cracks, Anthropic IPO Red Flags, Bill Gates Doomer",
   "rssTitle": "CoreWeave Crash, AI Trade Cracks, Anthropic IPO Red Flags, Bill Gates Doomer",
