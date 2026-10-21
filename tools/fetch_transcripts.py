@@ -17,10 +17,12 @@
 """
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
 import threading
+import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -162,8 +164,17 @@ def asr(e):
     data = urllib.request.urlopen(urllib.request.Request(e['audio'], headers={'User-Agent': UA}), timeout=900).read()
     mp3.write_bytes(data)
     out = TMP / 'asr'
-    subprocess.run(['mlx_whisper', str(mp3), '--model', 'mlx-community/whisper-large-v3-turbo', '--language', 'en',
-                    '--output-dir', str(out), '--output-format', 'json'], check=True, capture_output=True)
+    # 单期超时：turbo 在 Apple Silicon 上约 20 倍实时，给到时长的一半、至少 15 分钟；
+    # 关掉 condition-on-previous-text，避免某些音频陷入重复幻听的死循环（2026-10-20 曾卡死 12 小时）
+    limit = max(900, int((e.get('duration') or 3600) * 0.5))
+    try:
+        subprocess.run([shutil.which('mlx_whisper') or 'mlx_whisper', str(mp3),
+                        '--model', 'mlx-community/whisper-large-v3-turbo', '--language', 'en',
+                        '--condition-on-previous-text', 'False',
+                        '--output-dir', str(out), '--output-format', 'json'],
+                       check=True, capture_output=True, timeout=limit)
+    finally:
+        mp3.unlink(missing_ok=True)
     segs = json.loads((out / f'{e["slug"]}.json').read_text())['segments']
     paras, cur, t0 = [], [], None
     for s in segs:
@@ -175,8 +186,22 @@ def asr(e):
             cur, t0 = [], None
     if cur:
         paras.append((t0, ' '.join(cur)))
-    mp3.unlink(missing_ok=True)
     return '\n\n'.join(f'({ts(t)}) {p}' for t, p in paras) + '\n'
+
+
+FAILED_FILE = ROOT / 'asr_failed.json'
+ASR_MAX_FAILS = 2
+
+
+def asr_failed():
+    return json.loads(FAILED_FILE.read_text()) if FAILED_FILE.exists() else {}
+
+
+def mark_asr_failed(slug, why):
+    with _lock:
+        f = asr_failed()
+        f[slug] = {'n': f.get(slug, {}).get('n', 0) + 1, 'why': why[:200]}
+        FAILED_FILE.write_text(json.dumps(f, ensure_ascii=False, indent=0, sort_keys=True))
 
 
 def header(e, tag):
@@ -209,7 +234,11 @@ def work(e, do_asr):
             set_source(slug, tag)
             return slug, tag, len(text)
         if do_asr:
-            text = asr(e)
+            try:
+                text = asr(e)
+            except Exception as ex:
+                mark_asr_failed(slug, f'{type(ex).__name__}: {ex}')
+                raise
             if text:
                 TR.mkdir(parents=True, exist_ok=True)
                 (TR / f'{slug}.txt').write_text(header(e, 'asr') + text)
@@ -221,11 +250,20 @@ def work(e, do_asr):
 
 
 def main():
-    only = next((a.split('=', 1)[1] for a in sys.argv if a.startswith('--only=')), None)
-    limit = int(next((a.split('=', 1)[1] for a in sys.argv if a.startswith('--limit=')), 0)) or None
+    """--only=a,b 只处理指定期；--max-minutes=N 到点不再开始新的 ASR；--no-asr 只拉官方文稿与字幕；
+    --retry-failed 连续失败过 2 次的 ASR 也重试。"""
+    sys.path.insert(0, str(ROOT))
+    import pipeline
+    if not pipeline.acquire_lock('fetch_transcripts.py ' + ' '.join(sys.argv[1:])):
+        return 0
+    arg = lambda k: next((a.split('=', 1)[1] for a in sys.argv if a.startswith(f'--{k}=')), None)
+    only = {x for x in (arg('only') or '').split(',') if x}
+    limit = int(arg('limit') or 0) or None
+    deadline = time.time() + float(arg('max-minutes')) * 60 if arg('max-minutes') else None
     do_asr = '--no-asr' not in sys.argv
+    failed = {} if '--retry-failed' in sys.argv else asr_failed()
     master = json.load(open(ROOT / 'allin-master.json'))
-    todo = [e for e in master if (e['slug'] == only if only else not have(e['slug']))][:limit]
+    todo = [e for e in master if (e['slug'] in only if only else not have(e['slug']))][:limit]
     log(f'todo: {len(todo)}')
     # 官方文稿与字幕并发拉取；ASR 吃 GPU，单独串行
     net = [e for e in todo if e.get('transcriptURL') or e.get('ytId')]
@@ -237,13 +275,22 @@ def main():
                 rest.append(next(e for e in todo if e['slug'] == slug))
     rest += [e for e in todo if not (e.get('transcriptURL') or e.get('ytId'))]
     for e in rest:
-        if do_asr and not have(e['slug']):
-            slug, tag, n = work(dict(e, transcriptURL=None, ytId=None), True)
-            log(f'{slug}: {tag} {n}')
+        if not do_asr or have(e['slug']):
+            continue
+        if failed.get(e['slug'], {}).get('n', 0) >= ASR_MAX_FAILS:
+            log(f'{e["slug"]}: ASR 已失败 {failed[e["slug"]]["n"]} 次，跳过（--retry-failed 可重试）')
+            continue
+        need = max(900, int((e.get('duration') or 3600) * 0.5))
+        if deadline and time.time() + min(need, 1200) > deadline:
+            log(f'时间预算用完，剩余 ASR 留给下次：{e["slug"]} 等')
+            break
+        slug, tag, n = work(dict(e, transcriptURL=None, ytId=None), True)
+        log(f'{slug}: {tag} {n}')
     src = load_sources()
     from collections import Counter
     log('sources:', dict(Counter(src.values())), f'missing: {sum(1 for e in master if not have(e["slug"]))}')
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

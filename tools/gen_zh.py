@@ -441,11 +441,20 @@ def deploy():
 
 
 def main():
+    """--watch 持续扫描；--only=a,b 只做指定期；--max-minutes=N 到点不再开新任务；--no-deploy 交给调用方部署。"""
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import pipeline
+    if not pipeline.acquire_lock('gen_zh.py ' + ' '.join(sys.argv[1:])):
+        return 0
     watch = '--watch' in sys.argv
+    no_deploy = '--no-deploy' in sys.argv
     only = None
+    deadline = None
     for a in sys.argv[1:]:
         if a.startswith('--only='):
-            only = a.split('=', 1)[1]
+            only = {x for x in a.split('=', 1)[1].split(',') if x}
+        if a.startswith('--max-minutes='):
+            deadline = time.time() + float(a.split('=', 1)[1]) * 60
 
     master = json.load(open(ROOT / 'tools' / 'allin-master.json'))
     tp = ROOT / 'tools' / 'translations.json'
@@ -471,7 +480,7 @@ def main():
 
     todo = []
     for slug in eps:  # master 顺序 = 最新在前
-        if only and slug != only:
+        if only and slug not in only:
             continue
         if (ZH_DIR / f'{slug}.html').exists():
             continue
@@ -488,6 +497,8 @@ def main():
     def work(item):
         nonlocal probe_n
         slug, src = item
+        if deadline and time.time() > deadline - 240:   # 留出单篇生成的时间，到点不再开新篇
+            return slug, None, 0, 0, ['时间预算用完，留给 backlog'], 'skipped'
         with attempt_lock:
             idx = attempts.get(slug, 0)
             attempts[slug] = idx + 1
@@ -517,13 +528,17 @@ def main():
     attempts = {}
     rounds_empty = 0
     MAX_ATTEMPTS = 5
+    passes = 0
     while True:
+        passes += 1
         with ThreadPoolExecutor(max_workers=WORKERS) as pool:
             futs = {pool.submit(work, it): it[0] for it in todo}
             for fut in as_completed(futs):
                 slug = futs[fut]
                 try:
                     slug, cjk, _, dt, problems, model = fut.result()
+                    if model == 'skipped':
+                        continue
                     if cjk is None or cjk == 0:
                         fail += 1
                         failures[slug] = '; '.join(problems)
@@ -536,7 +551,7 @@ def main():
                     fail += 1
                     failures[slug] = str(e)[:200]
                     print(f'ERR {slug}: {str(e)[:120]}', flush=True)
-        if since_deploy >= DEPLOY_EVERY:
+        if since_deploy >= DEPLOY_EVERY and not no_deploy:
             print(f'--- deploying ({since_deploy} new) ---', flush=True)
             try:
                 deploy()
@@ -545,6 +560,15 @@ def main():
                 print(f'deploy FAILED: {str(e)[:300]}', flush=True)
             since_deploy = 0
         if not watch:
+            # 一次性运行：失败的期换下一家模型再试一轮（时间允许时）
+            retry = [(sl, transcript_source(sl)) for sl in failures
+                     if not (ZH_DIR / f'{sl}.html').exists() and attempts.get(sl, 0) < 2]
+            if passes < 2 and retry and not (deadline and time.time() > deadline - 300):
+                todo = retry
+                for sl, _ in retry:
+                    failures.pop(sl, None)
+                print(f'retry pass: {len(todo)}', flush=True)
+                continue
             break
         time.sleep(WATCH_INTERVAL)
         todo = []
@@ -566,7 +590,7 @@ def main():
         print(f'watch: nothing new (round {rounds_empty}, asr_alive={asr_alive})', flush=True)
         if rounds_empty >= 3:
             break
-    if since_deploy and done:
+    if since_deploy and done and not no_deploy:
         try:
             deploy()
             print('final deploy ok', flush=True)
@@ -577,7 +601,8 @@ def main():
         json.dump(failures, open(ROOT / 'gen_zh_failures.json', 'w'),
                   ensure_ascii=False, indent=1)
         print('failures: ' + ', '.join(list(failures)[:20]), flush=True)
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

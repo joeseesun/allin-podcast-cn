@@ -15,6 +15,7 @@ import difflib
 import html as H
 import json
 import re
+import shutil
 import subprocess
 import sys
 import urllib.request
@@ -117,8 +118,9 @@ def yt_list():
     vids = []
     for tab in ('videos', 'streams'):
         try:
-            r = subprocess.run(['yt-dlp', '--flat-playlist', '-J', f'https://www.youtube.com/@allin/{tab}'],
-                               capture_output=True, text=True, timeout=600)
+            r = subprocess.run([shutil.which('yt-dlp') or '/opt/homebrew/bin/yt-dlp', '--flat-playlist', '-J',
+                                f'https://www.youtube.com/@allin/{tab}'],
+                               capture_output=True, text=True, timeout=240)
             vids += [{'id': e['id'], 'title': e.get('title') or '', 'duration': e.get('duration')}
                      for e in json.loads(r.stdout).get('entries', [])]
         except Exception as e:

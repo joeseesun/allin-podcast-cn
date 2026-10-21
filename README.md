@@ -61,9 +61,19 @@ python3 -m http.server 8123 -d site
 | `tools/fetch_meta.py` | RSS + 官网 API（app.podcastai.com）+ YouTube 频道合并为 `allin-master.json`；期号、标题相似度、时长三重匹配，已发布的 slug 不变 |
 | `tools/fetch_transcripts.py` | 官方 Transcript → YouTube 字幕 → 下载音频用 `mlx_whisper` 转写，断点续跑 |
 | `tools/translate_titles.py` / `translate_chapters.py` | 中文标题、卡片短标题、一句话简介、中文章节 |
-| `tools/gen_zh.py` | 中文精读批产；`--watch` 持续扫新文稿，每 30 篇自动 build + rsync |
-| `tools/sync_new.py` | 日常追新：串起以上全部；官网补发官方文稿时自动替换 ASR 版并重写精读 |
+| `tools/gen_zh.py` | 中文精读批产；`--only=a,b` 指定期、`--max-minutes` 时间预算、`--no-deploy` 交给调用方部署，`--watch` 持续扫描 |
+| `tools/sync_new.py` | 每日追新：只处理新期（及官网补发了官方文稿的期），默认 45 分钟内结束；取全站锁，被占用就以返回码 0 退出；结束前提交并推送 main |
+| `tools/backlog.py` | 历史积压：补 ASR 文稿与精读，跑满时间预算（默认 4 小时）后部署并推送；与每日追新共用一把锁 |
+| `tools/pipeline.py` | 共用基础设施：全站锁、非交互环境的 PATH、构建部署、提交推送（推送失败只记日志） |
 | `tools/brand.py` / `og_faces.py` | 图标与分享卡片；人脸定位需要 `opencv-python-headless<5` |
+
+调度器（launchd 等）调用方式，工作目录任意，日志在 `~/Library/Logs/allin-site/`：
+
+```bash
+/opt/homebrew/bin/python3 /Users/joe/Documents/ChatGPT/allin/tools/sync_new.py
+```
+
+返回码 0 表示成功（包括没有新期、锁被占用、部分工作顺延给 backlog），非 0 表示元数据、构建或部署失败。
 
 模型通过乔木 Magpie 网关调用，API key 存在 macOS Keychain（服务 `qiaomu-llm`，账户 `magpie`），不进仓库。精读轮换（2026-10-19 用 E292 实测选定）：`workbuddy/deepseek-v4.1-flash` → `opencode-go/deepseek-v4.1-flash` → `workbuddy/glm-5.3` → `workbuddy/kimi-k3-1` → `trae-cn/deepseek-v4.1-flash`，按成功率与违规率自动升降位。
 
