@@ -16,6 +16,7 @@
 断点续跑：已有文稿的期跳过。
 """
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -144,7 +145,7 @@ def youtube(e):
     for tag, flag in (('yt', '--write-subs'), ('ytauto', '--write-auto-subs')):
         for f in d.glob('*.vtt'):
             f.unlink()
-        subprocess.run(['yt-dlp', '--skip-download', flag, '--sub-langs', 'en,en-US,en-orig' if tag == 'ytauto' else 'en,en-US,en-GB',
+        subprocess.run([shutil.which('yt-dlp') or 'yt-dlp', '--skip-download', flag, '--sub-langs', 'en,en-US,en-orig' if tag == 'ytauto' else 'en,en-US,en-GB',
                         '--sub-format', 'vtt', '-o', str(d / '%(id)s.%(ext)s'), url],
                        capture_output=True, text=True, timeout=300)
         vtts = sorted(d.glob('*.vtt'), key=lambda p: ('orig' in p.name, p.name))
@@ -155,9 +156,41 @@ def youtube(e):
     return None, None
 
 
+ASR_ENGINE = os.environ.get('ASR_ENGINE', 'whisper').strip().lower()
+
+
+class AsrUnavailable(RuntimeError):
+    """转写引擎不可用（凭据缺失、引擎未安装）：不是这期音频的问题，不记失败次数。"""
+
+
+def asr_doubao(e):
+    """豆包录音文件识别（服务器上用）：共用 $PODCAST_OPS/doubao_asr.py，先直传音频 URL，被拒再切段上传。
+    豆包结果只有按停顿分的段落、没有时间戳。"""
+    ops = os.environ.get('PODCAST_OPS') or str(ROOT.parent.parent / 'podcast-ops')
+    sys.path.insert(0, ops)
+    try:
+        from doubao_asr import AsrError, transcribe
+    except ImportError as ex:
+        raise AsrUnavailable(f'找不到 doubao_asr（PODCAST_OPS={ops}）：{ex}')
+    if not (os.environ.get('DOUBAO_ASR_APP_KEY') and os.environ.get('DOUBAO_ASR_ACCESS_KEY')):
+        raise AsrUnavailable('缺少 DOUBAO_ASR_APP_KEY / DOUBAO_ASR_ACCESS_KEY')
+    log(f'  豆包转写 {e["slug"]} …')
+    try:
+        text = transcribe(e['audio'], lang='en-US')
+    except AsrError as ex:
+        if '缺少' in str(ex):
+            raise AsrUnavailable(str(ex))
+        raise
+    return text.strip() + '\n' if text and text.strip() else None
+
+
 def asr(e):
     if not e.get('audio'):
         return None
+    if ASR_ENGINE == 'doubao':
+        return asr_doubao(e)
+    if not shutil.which('mlx_whisper'):
+        raise AsrUnavailable('本机没有 mlx_whisper（Linux 服务器请设 ASR_ENGINE=doubao）')
     TMP.mkdir(parents=True, exist_ok=True)
     mp3 = TMP / f'{e["slug"]}.mp3'
     log(f'  下载音频 {e["slug"]} …')
@@ -208,7 +241,9 @@ def header(e, tag):
     src = {'ot': 'Official transcript published on allin.com (speaker-diarized).',
            'yt': 'YouTube captions (uploaded by the channel).',
            'ytauto': 'YouTube automatic captions. May contain recognition errors.',
-           'asr': 'Machine transcription by Whisper large-v3-turbo (MLX, local). May contain recognition errors.'}[tag]
+           'asr': ('Machine transcription by Doubao ASR (Volcengine, cloud). May contain recognition errors.'
+                   if ASR_ENGINE == 'doubao' else
+                   'Machine transcription by Whisper large-v3-turbo (MLX, local). May contain recognition errors.')}[tag]
     num = f'E{e["num"]}: ' if e.get('num') is not None else ''
     return f'All-In Podcast {num}{e["title"]}\n{src}\n\n'
 
@@ -236,6 +271,8 @@ def work(e, do_asr):
         if do_asr:
             try:
                 text = asr(e)
+            except AsrUnavailable:
+                raise
             except Exception as ex:
                 mark_asr_failed(slug, f'{type(ex).__name__}: {ex}')
                 raise
@@ -245,6 +282,8 @@ def work(e, do_asr):
                 set_source(slug, 'asr')
                 return slug, 'asr', len(text)
         return slug, None, 0
+    except AsrUnavailable:
+        raise
     except Exception as ex:
         return slug, f'ERR {type(ex).__name__}: {str(ex)[:120]}', 0
 
@@ -284,7 +323,11 @@ def main():
         if deadline and time.time() + min(need, 1200) > deadline:
             log(f'时间预算用完，剩余 ASR 留给下次：{e["slug"]} 等')
             break
-        slug, tag, n = work(dict(e, transcriptURL=None, ytId=None), True)
+        try:
+            slug, tag, n = work(dict(e, transcriptURL=None, ytId=None), True)
+        except AsrUnavailable as ex:
+            log(f'ASR 引擎不可用，本次不再转写：{ex}')
+            break
         log(f'{slug}: {tag} {n}')
     src = load_sources()
     from collections import Counter

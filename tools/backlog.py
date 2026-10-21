@@ -5,9 +5,9 @@
 连续失败 2 次的 ASR 会被跳过（记录在 tools/asr_failed.json），加 --retry-failed 可强制重试。
 
 返回码：0 = 成功（含锁被占用、积压已清空）；1 = 构建或部署失败
-日志：~/Library/Logs/allin-site/backlog-YYYYMMDD.log
+日志：与 sync_new 同目录（macOS ~/Library/Logs/allin-site/，Linux /var/log/allin-site/），backlog-YYYYMMDD.log
 
-用法：/opt/homebrew/bin/python3 /Users/joe/Documents/ChatGPT/allin/tools/backlog.py [--max-minutes=240] [--no-asr] [--retry-failed] [--no-push]
+用法：<python> tools/backlog.py [--max-minutes=240] [--no-asr] [--retry-failed] [--no-push]
 """
 import sys
 import traceback

@@ -113,11 +113,14 @@ WATCH_INTERVAL = 600
 _api_key = None
 
 def api_key():
+    """MAGPIE_API_KEY 环境变量优先，macOS 再回退 Keychain（见 pipeline.magpie_key）。"""
     global _api_key
     if _api_key is None:
-        _api_key = subprocess.run(
-            ['security', 'find-generic-password', '-s', 'qiaomu-llm', '-a', 'magpie', '-w'],
-            capture_output=True, text=True, check=True).stdout.strip()
+        sys.path.insert(0, str(ROOT / 'tools'))
+        import pipeline
+        _api_key = pipeline.magpie_key()
+        if not _api_key:
+            raise RuntimeError('缺少 Magpie API key：设置环境变量 MAGPIE_API_KEY（macOS 也可放 Keychain qiaomu-llm/magpie）')
     return _api_key
 
 SYSTEM = """你是向阳乔木，一位中文科技内容作者。擅长把信息密度高的英文报告、机器翻译稿或直播文字稿，改写成逻辑清晰、读感流畅的中文文章。
@@ -433,11 +436,9 @@ def gen_one(slug, ep, trans, model=None):
 
 
 def deploy():
-    subprocess.run([sys.executable, 'tools/build.py'], cwd=ROOT, check=True,
-                   capture_output=True, text=True)
-    subprocess.run(['rsync', '-az', '--delete', '--exclude', '.well-known',
-                    'site/', 'qiaomu-hostinger:/www/wwwroot/allin.qiaomu.ai/'],
-                   cwd=ROOT, check=True, capture_output=True, text=True)
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import pipeline
+    pipeline.build_and_deploy()
 
 
 def main():

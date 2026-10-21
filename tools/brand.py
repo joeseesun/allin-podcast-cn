@@ -8,6 +8,7 @@
 import hashlib
 import io
 import json
+import os
 import sys
 import urllib.request
 from pathlib import Path
@@ -15,7 +16,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageFilter
 
 ROOT = Path(__file__).resolve().parent
-SITE = ROOT.parent / 'site'
+SITE = Path(os.environ.get('ALLIN_SITE_DIR') or ROOT.parent / 'site')
 CACHE = ROOT / '.cache'
 FONTS = {
     'caslon': ('LibreCaslonText.ttf', 'https://raw.githubusercontent.com/google/fonts/main/ofl/librecaslontext/LibreCaslonText%5Bwght%5D.ttf'),

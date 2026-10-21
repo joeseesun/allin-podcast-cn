@@ -9,7 +9,7 @@
 匹配规则：期号（RSS 标题 E123 / 音频文件名 ALLIN-E123）> 标题相似且日期相近 > 时长兜底。
 可重复执行；已有条目的 slug 保持不变（slug 一旦发布就是网址）。
 
-用法：python3 tools/fetch_meta.py [--no-yt]
+用法：python3 tools/fetch_meta.py [--no-yt] [--out=临时文件]
 """
 import difflib
 import html as H
@@ -221,7 +221,8 @@ def main():
             'apple': (a or {}).get('appleEpisodeID'), 'spotify': (a or {}).get('spotifyEpisodeID'),
         })
     master.sort(key=lambda e: (e['date'], e['num'] or 0), reverse=True)
-    MASTER.write_text(json.dumps(master, ensure_ascii=False, indent=1) + '\n')
+    out = next((Path(a.split('=', 1)[1]) for a in sys.argv if a.startswith('--out=')), MASTER)   # 演练时写到临时文件
+    out.write_text(json.dumps(master, ensure_ascii=False, indent=1) + '\n')
     print(f'master: {len(master)} eps, num={sum(1 for e in master if e["num"] is not None)}, '
           f'yt={sum(1 for e in master if e["ytId"])}, audio={sum(1 for e in master if e["audio"])}, '
           f'official_tr={sum(1 for e in master if e["transcriptURL"])}')

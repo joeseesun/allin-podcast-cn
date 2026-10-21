@@ -3,6 +3,7 @@
 增量、断点续跑；与 translate_titles.py 共用 translations.json，二者不要同时运行。"""
 import json
 import subprocess
+import sys
 import threading
 import time
 import urllib.request
@@ -13,8 +14,7 @@ ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'translations.json'
 API = 'https://magpie.qiaomu.ai/v1/chat/completions'
 MODELS = ['workbuddy/deepseek-v4.1-flash', 'opencode-go/deepseek-v4.1-flash', 'trae-cn/deepseek-v4.1-flash']
-KEY = subprocess.run(['security', 'find-generic-password', '-s', 'qiaomu-llm', '-a', 'magpie', '-w'],
-                     capture_output=True, text=True).stdout.strip()
+KEY = None   # main() 里按需读取：MAGPIE_API_KEY 优先，macOS 回退 Keychain
 BATCH = 10
 PROMPT = """把下面 All-In 播客各期的章节标题翻成简体中文（JSON，键为 slug，值为章节标题数组）。
 要求：像中文财经杂志的小标题，简洁准确；人名用通行中文译名（Chamath→查马斯，Sacks→萨克斯，Friedberg→弗里德伯格，Jason→杰森，Jensen Huang→黄仁勋），公司名用通行叫法；
@@ -65,6 +65,14 @@ def main():
     done = json.load(open(OUT)) if OUT.exists() else {}
     todo = [e for e in master if len(e.get('chapters') or []) >= 2 and not (done.get(e['slug']) or {}).get('chap')]
     print(f'todo {len(todo)}', flush=True)
+    if not todo:
+        return 0
+    global KEY
+    import pipeline
+    KEY = pipeline.magpie_key()
+    if not KEY:
+        print('缺少 Magpie API key（环境变量 MAGPIE_API_KEY 或 macOS Keychain），跳过章节翻译', flush=True)
+        return 2
     jobs = [(k, todo[i:i + BATCH], done) for k, i in enumerate(range(0, len(todo), BATCH))]
     with ThreadPoolExecutor(6) as ex:
         list(ex.map(run, jobs))
@@ -72,4 +80,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

@@ -19,13 +19,14 @@
 """
 import html as H
 import json
+import os
 import re
 import shutil
 from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-SITE = ROOT.parent / 'site'
+SITE = Path(os.environ.get('ALLIN_SITE_DIR') or ROOT.parent / 'site')   # 演练时构建到临时副本
 DOMAIN = 'https://allin.qiaomu.ai'
 SITE_NAME = 'All-In 播客中文版'
 UMAMI = '<script defer src="https://umami.qiaomu.ai/script.js" data-website-id="b62cc787-d58e-44c9-892b-4137e31da048" data-domains="allin.qiaomu.ai"></script>'
@@ -251,7 +252,7 @@ TR_SOURCE_NOTE = {
     'ot': '文稿来自 All-In 官网（allin.com）发布的官方 Transcript，说话人按官网分轨数据标注，个别段落可能张冠李戴。',
     'yt': '文稿来自 YouTube 频道上传的英文字幕。',
     'ytauto': '文稿来自 YouTube 自动生成字幕，可能有识别错误，没有说话人标注。',
-    'asr': '文稿由本站用语音识别模型（Whisper，基于官方发布音频）机器转写，可能有识别错误，没有说话人标注；人名与数字请以音频为准。',
+    'asr': '文稿由本站用语音识别模型（Whisper 或豆包，基于官方发布音频）机器转写，可能有识别错误，没有说话人标注；人名与数字请以音频为准。',
 }
 TR_LABEL = {'ot': '官方文稿', 'yt': 'YouTube 字幕', 'ytauto': '自动字幕', 'asr': '机器转写文稿'}
 
@@ -720,7 +721,7 @@ DISCLAIMER_BODY = """
         <ul>
           <li>官方 Transcript：来自 All-In 官网 allin.com 公开发布，含说话人分轨；</li>
           <li>YouTube 字幕：来自 All-In 官方 YouTube 频道的字幕或自动字幕；</li>
-          <li>机器转写：本站基于官方发布音频用语音识别模型（Whisper）生成，可能有识别错误，人名与数字请以音频为准。</li>
+          <li>机器转写：本站基于官方发布音频用语音识别模型（Whisper 或豆包）生成，可能有识别错误，人名与数字请以音频为准。</li>
         </ul>
 
         <h2>使用目的</h2>

@@ -10,14 +10,18 @@ BATCH = 12
 
 API = 'https://magpie.qiaomu.ai/v1/chat/completions'
 MODELS = ['trae-cn/deepseek-v4.1-flash', 'opencode-go/deepseek-v4.1-flash', 'workbuddy/deepseek-v4.1-flash']
-KEY = subprocess.run(['security', 'find-generic-password', '-s', 'qiaomu-llm', '-a', 'magpie', '-w'],
-                     capture_output=True, text=True).stdout.strip()
-assert KEY, 'keychain key not found'
-
 master = json.load(open(ROOT / 'allin-master.json'))
 done = json.load(open(OUT)) if OUT.exists() else {}
 todo = [e for e in master if e['slug'] not in done]
-print(f'total {len(master)}, done {len(done)}, todo {len(todo)}')
+print(f'total {len(master)}, done {len(done)}, todo {len(todo)}', flush=True)
+if not todo:
+    sys.exit(0)
+sys.path.insert(0, str(ROOT))
+import pipeline  # noqa: E402
+KEY = pipeline.magpie_key()
+if not KEY:
+    print('缺少 Magpie API key（环境变量 MAGPIE_API_KEY 或 macOS Keychain），跳过标题翻译', flush=True)
+    sys.exit(2)
 
 PROMPT = """你是资深财经科技播客的中文编辑。下面是 All-In 播客若干期的英文标题（JSON 数组，项含 slug/num/title/desc/chapters）。
 All-In 由杰森·卡拉卡尼斯、查马斯·帕里哈皮蒂亚、大卫·萨克斯、大卫·弗里德伯格四位投资人主持：周播按期号编号，一期聊多个话题；另有不编号的嘉宾访谈和峰会对谈。
