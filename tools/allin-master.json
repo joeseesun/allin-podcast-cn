@@ -1,6 +1,78 @@
 [
  {
   "num": null,
+  "title": "Arvind Krishna & Nikesh Arora: Quantum Threat, Open vs Frontier AI, AI Cyber Warfare & SaaS Collapse",
+  "rssTitle": "Arvind Krishna & Nikesh Arora: Quantum Threat, Open vs Frontier AI, AI Cyber Warfare & SaaS Collapse",
+  "date": "2026-10-21",
+  "slug": "arvind-krishna-nikesh-arora-quantum-threat-open",
+  "type": "interview",
+  "ytId": "yzk44lz-RGI",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/88_AUDIO_NikeshArvink.mp3",
+  "duration": 2400,
+  "desc": "How soon will quantum computing break today’s cryptography? Arvind Krishna and Nikesh Arora discuss the 2030 security deadline, post-quantum migration, frontier versus open-weight AI economics, cyber warfare and regulation. Plus, why vertical integration could consolidate software stacks while keeping companies accountable for what their systems produce.",
+  "chapters": [
+   [
+    0,
+    "Arvind Krishna & Nikesh Arora talk about Quantum Computing's Threat to Encryption"
+   ],
+   [
+    547,
+    "Open Weight vs. Frontier AI Models"
+   ],
+   [
+    1087,
+    "AI and Cyber Warfare"
+   ],
+   [
+    1274,
+    "AI Regulation and the Global AI Arms Race"
+   ],
+   [
+    1832,
+    "Vertical Integration and Software Consolidation"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": "Chamath Palihapitiya",
+    "dur": 272,
+    "host": true
+   },
+   {
+    "name": "Arvind Krishna",
+    "dur": 935,
+    "host": false
+   },
+   {
+    "name": "Nikesh Arora",
+    "dur": 866,
+    "host": false
+   },
+   {
+    "name": null,
+    "dur": 3,
+    "host": false
+   },
+   {
+    "name": "David Sacks",
+    "dur": 275,
+    "host": true
+   }
+  ],
+  "guests": [
+   "Arvind Krishna",
+   "Nikesh Arora",
+   null
+  ],
+  "pai": "8gGLGgWn9fA",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/8gGLGgWn9fA/transcript-402c2b45.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/arvind-krishna-nikesh-arora-quantum-threat-open-vs-frontier-ai-ai-cyber-warfare-saas-collapse",
+  "guid": "21690ac7-0a5e-4f6b-84e3-91f41bbb7680",
+  "apple": "1502871393?i=1000797524230",
+  "spotify": "4nPuYWdDVIrX5zuXXWMJmS"
+ },
+ {
+  "num": null,
   "title": "Dylan Field: Is AI Replacing Designers?, Design is the New Code & Democratizing Creativity",
   "rssTitle": "Dylan Field: Is AI Replacing Designers?, Design is the New Code & Democratizing Creativity",
   "date": "2026-10-19",
