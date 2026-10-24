@@ -1,5 +1,92 @@
 [
  {
+  "num": 294,
+  "title": "AI Cyber Panic, Ken Griffin’s Bubble Warning, The Fall of France?",
+  "rssTitle": "AI Cyber Panic, Ken Griffin's Bubble Warning, The Fall of France?",
+  "date": "2026-10-23",
+  "slug": "e294",
+  "type": "weekly",
+  "ytId": "6czo-C3FU7I",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/ALLIN-E294_Ch.mp3",
+  "duration": 6203,
+  "desc": "Is AI spending creating durable productivity, or circulating within a concentrated startup economy? Nikesh Arora joins Jason, Chamath and Friedberg to debate enterprise adoption, open-source infrastructure, cyber defense, rogue agents and unresolved liability. Plus, France’s unrest, weak growth, integration failures and fiscal reality, and Trump’s second-half strategy.",
+  "chapters": [
+   [
+    0,
+    "Bestie intros!"
+   ],
+   [
+    11,
+    "Ken Griffin's AI bubble warning"
+   ],
+   [
+    499,
+    "Palo Alto Networks CEO Nikesh Arora joins"
+   ],
+   [
+    864,
+    "AI Cyber panic: PHP exploits and the tumultuous year ahead"
+   ],
+   [
+    2657,
+    "France on the brink: Riots, immigration referendum, debt crisis"
+   ],
+   [
+    5509,
+    "Trump's second half strategy, Press Secretary J-Cal?"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": null,
+    "dur": 7,
+    "host": false
+   },
+   {
+    "name": null,
+    "dur": 1,
+    "host": false
+   },
+   {
+    "name": "Jason Calacanis",
+    "dur": 2281,
+    "host": true
+   },
+   {
+    "name": "Chamath Palihapitiya",
+    "dur": 1384,
+    "host": true
+   },
+   {
+    "name": "Nikesh Arora",
+    "dur": 1020,
+    "host": false
+   },
+   {
+    "name": "David Friedberg",
+    "dur": 1225,
+    "host": true
+   },
+   {
+    "name": null,
+    "dur": 153,
+    "host": false
+   }
+  ],
+  "guests": [
+   null,
+   null,
+   "Nikesh Arora",
+   null
+  ],
+  "pai": "vdz3u0XRKp3",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/vdz3u0XRKp3/transcript-f8769752.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/ai-cyber-panic-ken-griffins-bubble-warning-the-fall-of-france",
+  "guid": "8173444f-00cd-4027-8d2f-c9e911ae2a95",
+  "apple": "1502871393?i=1000797862912",
+  "spotify": "5YN3oT906EEw8qa3aonFB9"
+ },
+ {
   "num": null,
   "title": "Arvind Krishna & Nikesh Arora: Quantum Threat, Open vs Frontier AI, AI Cyber Warfare & SaaS Collapse",
   "rssTitle": "Arvind Krishna & Nikesh Arora: Quantum Threat, Open vs Frontier AI, AI Cyber Warfare & SaaS Collapse",
