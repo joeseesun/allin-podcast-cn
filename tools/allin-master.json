@@ -1,5 +1,64 @@
 [
  {
+  "num": null,
+  "title": "WHOOP CEO, Will Ahmed: 50B Hours of Health Data, a 4 Million Member Data Moat, & the FDA Fight",
+  "rssTitle": "WHOOP CEO, Will Ahmed: 50B Hours of Health Data, a 4 Million Member Data Moat, & the FDA Fight",
+  "date": "2026-10-29",
+  "slug": "whoop-ceo-will-ahmed-50b-hours-health",
+  "type": "interview",
+  "ytId": "Uc6xXNBWjfc",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/88_AUDIO_WILL_AHMED_INT.mp3",
+  "duration": 3339,
+  "desc": "Can just over 50 billion hours of continuous physiological data predict health problems before traditional testing? WHOOP CEO Will Ahmed joins Jason to unpack the subscription pivot that made retention and long-term member outcomes the priority. They discuss AI coaching, journaling and early illness detection, plus WHOOP’s push into the gray zone between wellness and medical care through blood pressure insights, ECG, lab integrations and its battles with the FDA.",
+  "chapters": [
+   [
+    0,
+    "Welcome Will Ahmed, CEO of WHOOP"
+   ],
+   [
+    59,
+    "WHOOP's $500 Hardware Problem & the Subscription Pivot"
+   ],
+   [
+    419,
+    "Inside 50 Billion Hours of 24/7 Health Data"
+   ],
+   [
+    1171,
+    "WHOOP's AI Coach, Journal Insights & GLP-1 Tracking"
+   ],
+   [
+    2097,
+    "WHOOP vs. the FDA & Competitor Wearables"
+   ],
+   [
+    2673,
+    "Lightning Round & LeBron James becomes a WHOOP Ambassador"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": "Will Ahmed",
+    "dur": 1697,
+    "host": false
+   },
+   {
+    "name": "Jason Calacanis",
+    "dur": 1583,
+    "host": true
+   }
+  ],
+  "guests": [
+   "Will Ahmed"
+  ],
+  "pai": "AfBgV6uo6R0",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/AfBgV6uo6R0/transcript-3acbccdb.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/whoop-ceo-will-ahmed-50b-hours-of-health-data-a-4-million-member-data-moat-the-fda-fight",
+  "guid": "25ed3987-a02b-434e-8a71-ed74bad8e863",
+  "apple": "1502871393?i=1000798784337",
+  "spotify": "1lCk4NelO1b8Il1AMgw50q"
+ },
+ {
   "num": 294,
   "title": "AI Cyber Panic, Ken Griffin’s Bubble Warning, The Fall of France?",
   "rssTitle": "AI Cyber Panic, Ken Griffin's Bubble Warning, The Fall of France?",
