@@ -1,5 +1,68 @@
 [
  {
+  "num": 295,
+  "title": "Anthropic S-1 Shocker, Greatest Business Ever? Google’s $500B Wipeout, Midterm Predictions",
+  "rssTitle": "Anthropic S-1 Shocker, Greatest Business Ever? Google's $500B Wipeout, Midterm Predictions",
+  "date": "2026-10-30",
+  "slug": "e295",
+  "type": "weekly",
+  "ytId": "p1Dy4e4ff0s",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/ALLIN-E295_Ch.mp3",
+  "duration": 5147,
+  "desc": "Anthropic’s S-1 makes the case that AI demand is still early, highly profitable and capable of creating enormous value across the compute stack. But can power, data centers and capital keep pace? The besties break down Anthropic’s economics, AI’s competition with government borrowing for liquidity, and Google’s $500 billion market-cap drop as investors question search advertising. Plus, the risks of an AI-driven economy and final midterm predictions.",
+  "chapters": [
+   [
+    0,
+    "Bestie Intros"
+   ],
+   [
+    202,
+    "Anthropic S-1 Breakdown: Greatest Business Ever?"
+   ],
+   [
+    1967,
+    "AI's Biggest Problem and Anthropic's Doomer Showdown"
+   ],
+   [
+    3717,
+    "Google Sheds $500B Market Cap in Worst Day Ever: What Went Wrong?"
+   ],
+   [
+    4457,
+    "Final Midterms Predictions and Scenarios"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": "Jason Calacanis",
+    "dur": 1396,
+    "host": true
+   },
+   {
+    "name": "David Sacks",
+    "dur": 1454,
+    "host": true
+   },
+   {
+    "name": "Chamath Palihapitiya",
+    "dur": 1456,
+    "host": true
+   },
+   {
+    "name": "David Friedberg",
+    "dur": 729,
+    "host": true
+   }
+  ],
+  "guests": [],
+  "pai": "92G8a2z0Zzn",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/92G8a2z0Zzn/transcript-0754f8dd.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/anthropic-s-1-shocker-greatest-business-ever-googles-500b-wipeout-midterm-predictions",
+  "guid": "6b0acd19-a13a-4474-8e02-402215408f4f",
+  "apple": "1502871393?i=1000798972086",
+  "spotify": "53mAntPRAPyGp6LI5wFiY5"
+ },
+ {
   "num": null,
   "title": "WHOOP CEO, Will Ahmed: 50B Hours of Health Data, a 4 Million Member Data Moat, & the FDA Fight",
   "rssTitle": "WHOOP CEO, Will Ahmed: 50B Hours of Health Data, a 4 Million Member Data Moat, & the FDA Fight",
