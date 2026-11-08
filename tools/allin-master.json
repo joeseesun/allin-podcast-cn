@@ -1,5 +1,68 @@
 [
  {
+  "num": 296,
+  "title": "Midterm Blood Bath, $4T AI Sell Off, Data Center Freeze, What’s Next for Trump",
+  "rssTitle": "Midterm Blood Bath, $4T AI Sell Off, Data Center Freeze, What's Next for Trump",
+  "date": "2026-11-07",
+  "slug": "e296",
+  "type": "weekly",
+  "ytId": "2v8b062QzTI",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/ALLIN-E296_Ch.mp3",
+  "duration": 5584,
+  "desc": "Was affordability, not ideology, behind the midterm backlash? Chamath argues, “The economic reality in America is broken,” as the besties debate war-related inflation, cost-of living, and Trump’s path back through populist priorities and tangible relief. Plus, data center backlash, compute scarcity, AI regulation, the $4T market cap selloff, and OpenAI’s reported solution to the Exponential Time Hypothesis.",
+  "chapters": [
+   [
+    0,
+    "Bestie intros!"
+   ],
+   [
+    217,
+    "Midterms postmortem: What led to a generational GOP collapse?"
+   ],
+   [
+    1946,
+    "How can Trump salvage his presidency?"
+   ],
+   [
+    3193,
+    "Market reaction: Data center fears, $4T in market cap shed, AI ban potential"
+   ],
+   [
+    5061,
+    "Science Corner: OpenAI solves Exponential Time Hypothesis"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": "Jason Calacanis",
+    "dur": 1616,
+    "host": true
+   },
+   {
+    "name": "David Sacks",
+    "dur": 1387,
+    "host": true
+   },
+   {
+    "name": "Chamath Palihapitiya",
+    "dur": 1385,
+    "host": true
+   },
+   {
+    "name": "David Friedberg",
+    "dur": 1093,
+    "host": true
+   }
+  ],
+  "guests": [],
+  "pai": "CqtFfd0pJw0",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/CqtFfd0pJw0/transcript-ee1355eb.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/midterm-blood-bath-4t-ai-sell-off-data-center-freeze-whats-next-for-trump",
+  "guid": "53093a95-1b90-4228-aaf2-2d8ee77fd504",
+  "apple": "1502871393?i=1000800442634",
+  "spotify": "0wHmuH41EOoqXD7hmnKRtv"
+ },
+ {
   "num": 295,
   "title": "Anthropic S-1 Shocker, Greatest Business Ever? Google’s $500B Wipeout, Midterm Predictions",
   "rssTitle": "Anthropic S-1 Shocker, Greatest Business Ever? Google's $500B Wipeout, Midterm Predictions",
