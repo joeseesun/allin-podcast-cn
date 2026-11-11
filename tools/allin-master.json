@@ -1,5 +1,64 @@
 [
  {
+  "num": null,
+  "title": "Freedom vs. Safety: Axon CEO Rick Smith on the Future of Policing",
+  "rssTitle": "Freedom vs. Safety: Axon CEO Rick Smith on the Future of Policing",
+  "date": "2026-11-10",
+  "slug": "freedom-vs-safety-axon-ceo-rick-smith",
+  "type": "interview",
+  "ytId": "8h-gfrVYyAU",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/ALLIN-INTV_RickSmith_Ch.mp3",
+  "duration": 3336,
+  "desc": "How did Axon go from a garage startup and near-bankruptcy to an IPO? CEO Rick Smith traces the pivotal move into policing, proving TASER through relentless field demos and later betting on body cameras and cloud software. Smith and Jason Calacanis examine drones, robots and the future of public safety, including surveillance concerns, data governance and Axon’s bright line: “Any decisions about using force on another person will be made by humans.”",
+  "chapters": [
+   [
+    0,
+    "Axon CEO Rick Smith joins David Friedberg"
+   ],
+   [
+    159,
+    "History of TASER/Axon: brink of bankruptcy to IPO"
+   ],
+   [
+    545,
+    "Going public during the dot-com crash, selling to police, battling shorts and an SEC investigation, pivoting to software"
+   ],
+   [
+    1247,
+    "Creating the police body cam, surveillance state concerns around Flock"
+   ],
+   [
+    2125,
+    "Freedom vs safety, Skydio deal, Taser drone project controversy"
+   ],
+   [
+    2724,
+    "Future of robotic systems and drones in policing"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": "Jason Calacanis",
+    "dur": 645,
+    "host": true
+   },
+   {
+    "name": "Rick Smith",
+    "dur": 2651,
+    "host": false
+   }
+  ],
+  "guests": [
+   "Rick Smith"
+  ],
+  "pai": "9cvHBSmsswD",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/9cvHBSmsswD/transcript-16cfe533.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/freedom-vs-safety-axon-ceo-rick-smith-on-the-future-of-policing",
+  "guid": "8de68398-23b0-492c-b5d4-f18ff7bd227f",
+  "apple": "1502871393?i=1000801085089",
+  "spotify": "1hoTbZnycykk8Io0LFA3iO"
+ },
+ {
   "num": 296,
   "title": "Midterm Blood Bath, $4T AI Sell Off, Data Center Freeze, What’s Next for Trump",
   "rssTitle": "Midterm Blood Bath, $4T AI Sell Off, Data Center Freeze, What's Next for Trump",
