@@ -1,5 +1,79 @@
 [
  {
+  "num": 297,
+  "title": "Jensen OUT as Nvidia CEO: \"Spy\" Scandal, Export Restrictions, Market Impact",
+  "rssTitle": "Jensen Ousted as Nvidia CEO: \"Spy\" Scandal, Export Restrictions, Market Impact",
+  "date": "2026-11-14",
+  "slug": "e297",
+  "type": "weekly",
+  "ytId": "Uv2w4VTU-iQ",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/ALLIN-E297_Ch.mp3",
+  "duration": 5095,
+  "desc": "Is the biggest cost of NVIDIA’s turmoil a slowdown in America’s AI momentum? Jason, Chamath, Sacks and Friedberg examine Jensen Huang’s exit after six days of leaks, spy allegations and board action, plus the fight over China policy, chip controls and AI infrastructure. They also debate NVIDIA’s next CEO and Anthropic’s IPO road show, rapid product expansion, safety rhetoric and the rise of winner-take-all AI platforms.",
+  "chapters": [
+   [
+    0,
+    "Bestie intros!"
+   ],
+   [
+    80,
+    "Jensen Huang out as CEO: Spy allegations, classified memo leak, who wanted Jensen out?"
+   ],
+   [
+    1882,
+    "Market impact: AI trade, what happens to \"The Bank of Nvidia,\" China's strategy"
+   ],
+   [
+    2659,
+    "Export controls, totalitarian AI risks, China hawks"
+   ],
+   [
+    3506,
+    "Who should be Nvidia's next CEO?"
+   ],
+   [
+    3985,
+    "Anthropic kicks off IPO road show"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": null,
+    "dur": 1,
+    "host": false
+   },
+   {
+    "name": "Jason Calacanis",
+    "dur": 1170,
+    "host": true
+   },
+   {
+    "name": "David Sacks",
+    "dur": 1934,
+    "host": true
+   },
+   {
+    "name": "David Friedberg",
+    "dur": 928,
+    "host": true
+   },
+   {
+    "name": "Chamath Palihapitiya",
+    "dur": 958,
+    "host": true
+   }
+  ],
+  "guests": [
+   null
+  ],
+  "pai": "MV5HfFGG3tf",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/MV5HfFGG3tf/transcript-e533def1.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/jensen-ousted-as-nvidia-ceo-spy-scandal-export-restrictions-market-impact",
+  "guid": "8acea033-ba08-4e5a-ab7c-b543bc7e486f",
+  "apple": "1502871393?i=1000801835339",
+  "spotify": "2X1URjG8tGZnjY5UqFIF59"
+ },
+ {
   "num": null,
   "title": "Freedom vs. Safety: Axon CEO Rick Smith on the Future of Policing",
   "rssTitle": "Freedom vs. Safety: Axon CEO Rick Smith on the Future of Policing",
