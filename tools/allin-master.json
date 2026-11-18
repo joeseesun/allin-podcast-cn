@@ -1,5 +1,72 @@
 [
  {
+  "num": null,
+  "title": "Databricks CEO: AGI Is Already Here, Why Companies Are Behind, and the Superintelligence Debate",
+  "rssTitle": "Databricks CEO: AGI Is Already Here, Why Companies Are Behind, and the Superintelligence Debate",
+  "date": "2026-11-17",
+  "slug": "databricks-ceo-agi-already-here-companies-are",
+  "type": "interview",
+  "ytId": "1bR0gtecoHU",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/AUDIO_99_AliGhodsi_Databricks.mp3",
+  "duration": 3726,
+  "desc": "Has AI already delivered all the intelligence businesses need? Databricks CEO Ali Ghodsi tells Jason Calacanis why the real bottleneck is enterprise context: turning meetings, documents, code and org charts into systems that surface decisions, blockers and performance in real time. Ali breaks down Databricks’ contrarian bets on cloud, AI and open source, demos agentic AI, explains why enterprise adoption will take decades, and weighs staying private, recursive self-improvement and cyber risk.",
+  "chapters": [
+   [
+    0,
+    "Ali Ghodsi joins the show: Databricks' early bets on cloud, AI, and open source"
+   ],
+   [
+    530,
+    "Is AGI Already Here? Why Enterprise AI Is Falling Behind"
+   ],
+   [
+    1324,
+    "Live Demo: How Databricks Uses Agentic AI For Efficiency"
+   ],
+   [
+    2305,
+    "Databricks IPO: The Case for Staying Private"
+   ],
+   [
+    2642,
+    "RSI, Cyber Risk & the Doom Debate"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": "Ali Ghodsi",
+    "dur": 2224,
+    "host": false
+   },
+   {
+    "name": "Jason Calacanis",
+    "dur": 1352,
+    "host": true
+   },
+   {
+    "name": "Ali Ghodsi",
+    "dur": 85,
+    "host": false
+   },
+   {
+    "name": null,
+    "dur": 2,
+    "host": false
+   }
+  ],
+  "guests": [
+   "Ali Ghodsi",
+   "Ali Ghodsi",
+   null
+  ],
+  "pai": "iUNnmYhVAca",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/iUNnmYhVAca/transcript-e8746f52.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/databricks-ceo-agi-is-already-here-why-companies-are-behind-and-the-superintelligence-debate",
+  "guid": "22b845c5-e5be-4dd1-b4dd-7f3843120d12",
+  "apple": "1502871393?i=1000802561705",
+  "spotify": "089ae1G5M9VblSs3I5ro90"
+ },
+ {
   "num": 297,
   "title": "Jensen OUT as Nvidia CEO: \"Spy\" Scandal, Export Restrictions, Market Impact",
   "rssTitle": "Jensen Ousted as Nvidia CEO: \"Spy\" Scandal, Export Restrictions, Market Impact",

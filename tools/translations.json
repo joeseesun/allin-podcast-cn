@@ -5367,5 +5367,17 @@
 "英伟达下一任CEO该是谁？",
 "Anthropic启动IPO路演"
 ]
+},
+"databricks-ceo-agi-already-here-companies-are": {
+"zh": "Databricks CEO：AGI 已经到来，企业为何落后，超级智能之争",
+"guest": "阿里·戈德西：AGI 已至，企业为何落后",
+"desc": "阿里·戈德西认为 AGI 已满足企业所需，瓶颈在于把会议、文档、代码和组织架构转为实时决策系统，并谈及 IPO 与超级智能风险。",
+"chap": [
+"阿里·戈德西做客：Databricks 在云、AI 与开源上的早期押注",
+"AGI 已然到来？企业 AI 为何落后",
+"现场演示：Databricks 如何用智能体 AI 提效",
+"Databricks IPO：保持私有的理由",
+"RSI、网络风险与末日论之争"
+]
 }
 }
