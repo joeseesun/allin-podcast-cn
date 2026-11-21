@@ -1,5 +1,70 @@
 [
  {
+  "num": 298,
+  "title": "Anthropic Goes Public, Nvidia in Crisis, Markets Tank, Open Source Crackdown?",
+  "rssTitle": "Anthropic Goes Public, Nvidia in Crisis, Markets Tank, Open Source Crackdown?",
+  "date": "2026-11-20",
+  "slug": "e298",
+  "type": "weekly",
+  "ytId": "G5w7EyF-aFQ",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/ALLIN-E298_Ch.mp3",
+  "duration": 4601,
+  "desc": "Will AI create just nine to 10 vertically integrated mega-corps? Chamath lays out his “dirt to application” thesis and explains why markets may reward strategic acquisitions and infrastructure buildout while punishing buybacks and weak AI plans. Jason argues agents will let individuals coordinate virtual workers, while Friedberg says entire industries will be rewritten. Plus, the case for open source AI as essential to competition and liberty, and the state of Nvidia.",
+  "chapters": [
+   [
+    0,
+    "Chamath's theory on 10 AI Megacorps that go \"Dirt to Application\""
+   ],
+   [
+    207,
+    "Anthropic goes public, how companies are handling AI disruption"
+   ],
+   [
+    1001,
+    "Bull/bear case for Anthropic and the market"
+   ],
+   [
+    2201,
+    "White House weighs new open source disclosure rule for Chinese models"
+   ],
+   [
+    3557,
+    "State of Nvidia: Tanking stock, talent crisis, legal issues, Jensen's future"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": null,
+    "dur": 173,
+    "host": false
+   },
+   {
+    "name": "Jason Calacanis",
+    "dur": 1618,
+    "host": true
+   },
+   {
+    "name": "Chamath Palihapitiya",
+    "dur": 1588,
+    "host": true
+   },
+   {
+    "name": "David Friedberg",
+    "dur": 1140,
+    "host": true
+   }
+  ],
+  "guests": [
+   null
+  ],
+  "pai": "qpZ4QGjhgje",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/qpZ4QGjhgje/transcript-d2d92fdc.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/anthropic-goes-public-nvidia-in-crisis-markets-tank-open-source-crackdown",
+  "guid": "87f8e24a-476f-4565-88fb-9e5ee7549ece",
+  "apple": "1502871393?i=1000803205753",
+  "spotify": "0h9RMeNjd1EPci6NnH1jln"
+ },
+ {
   "num": null,
   "title": "Databricks CEO: AGI Is Already Here, Why Companies Are Behind, and the Superintelligence Debate",
   "rssTitle": "Databricks CEO: AGI Is Already Here, Why Companies Are Behind, and the Superintelligence Debate",
