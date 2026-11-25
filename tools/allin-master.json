@@ -1,5 +1,70 @@
 [
  {
+  "num": null,
+  "title": "Crowdstrike CEO: AI Cyberattack Wave, Hyperspeed Hacks, & The Patching Problem",
+  "rssTitle": "CrowdStrike CEO: AI Cyberattack Wave, Hyperspeed Hacks, & The Patching Problem",
+  "date": "2026-11-24",
+  "slug": "crowdstrike-ceo-ai-cyberattack-wave-hyperspeed-hacks",
+  "type": "interview",
+  "ytId": "o6KIjtkRdOI",
+  "audio": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/allinchamathjason/88_AUDIO_Geoge_Kurtz_INT.mp3",
+  "duration": 3208,
+  "desc": "CrowdStrike CEO George Kurtz explains why AI is giving almost anyone nation-state-level hacking capabilities: \"You're minting more adversaries and you're democratizing destruction.\" Jason and George discuss recent outages, autonomous attacks, vulnerability chains, patching tradeoffs, open-weight and local models, deepfake social engineering, identity controls, and why hackers increasingly log in rather than break in.",
+  "chapters": [
+   [
+    0,
+    "CrowdStrike CEO, George Kurtz joins the show!"
+   ],
+   [
+    98,
+    "Are the Outages Cyberattacks?"
+   ],
+   [
+    636,
+    "How AI Lets Anyone Hack Like a Nation-State Level Threat"
+   ],
+   [
+    993,
+    "Patching, Technical Debt, and Outages"
+   ],
+   [
+    2020,
+    "Open-Weight and Local AI: Risk and Defense"
+   ],
+   [
+    2558,
+    "Hackers Don't Break In, They Log In"
+   ]
+  ],
+  "speakers": [
+   {
+    "name": null,
+    "dur": 43,
+    "host": false
+   },
+   {
+    "name": "Jason Calacanis",
+    "dur": 1314,
+    "host": true
+   },
+   {
+    "name": "George Kurtz",
+    "dur": 1794,
+    "host": false
+   }
+  ],
+  "guests": [
+   null,
+   "George Kurtz"
+  ],
+  "pai": "fireY596005",
+  "transcriptURL": "https://data-1.podcastai.com/shows/WUw88XQXRpWQRwEBYvgTAC/episodes/fireY596005/transcript-0def7896.json",
+  "libsyn": "https://allinchamathjason.libsyn.com/crowdstrike-ceo-ai-cyberattack-wave-hyperspeed-hacks-the-patching-problem",
+  "guid": "0211081a-5243-4c18-ac57-e7ece5cac75d",
+  "apple": "1502871393?i=1000803782986",
+  "spotify": "67oIp26kZlicu3tNc6Sac6"
+ },
+ {
   "num": 298,
   "title": "Anthropic Goes Public, Nvidia in Crisis, Markets Tank, Open Source Crackdown?",
   "rssTitle": "Anthropic Goes Public, Nvidia in Crisis, Markets Tank, Open Source Crackdown?",
